@@ -70,3 +70,9 @@ Timestamp: Wed Feb 28 2024 01:11:08 GMT+0100 (Central European Standard Time)
 URL: /favicon.ico
 Timestamp: Wed Feb 28 2024 01:11:08 GMT+0100 (Central European Standard Time)
 
+URL: /css/style.css
+Timestamp: Thu Feb 29 2024 00:27:48 GMT+0100 (Central European Standard Time)
+
+URL: /favicon.ico
+Timestamp: Thu Feb 29 2024 00:27:48 GMT+0100 (Central European Standard Time)
+
