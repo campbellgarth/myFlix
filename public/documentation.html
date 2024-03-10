@@ -72,35 +72,35 @@
                 <td class="tg-0pky">'/movies/:title'</td>
                 <td class="tg-0pky">GET</td>
                 <td class="tg-0pky">none</td>
-                <td class="tg-0pky">A single JSON object about the details of one movie (name, director, release year, genre, image URL)</td>
+                <td class="tg-0pky">A single JSON object about the details of one movie (name, description, director, release year, genre, image URL)<br><br>{<br>"Name": "The Dark Knight",<br>"Description": "a batman movie",<br>"Director": "Christopher Nolan",<br>"Year": 2008,<br>"Genre": "Action",<br>"imgURL": "https://www.image.com"<br>}<br></td>
               </tr>
               <tr>
                 <td class="tg-0pky">Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
                 <td class="tg-0pky">'/movies/genre/:genreName'</td>
                 <td class="tg-0pky">GET</td>
                 <td class="tg-0pky">none</td>
-                <td class="tg-0pky">A&nbsp;&nbsp;single JSON object about the name and description of a genre</td>
+                <td class="tg-0pky">A  single JSON object about the name and description of a genre<br><br>{<br>"Name": "Horror",<br>"Description": "A scary movie"<br>}</td>
               </tr>
               <tr>
                 <td class="tg-0pky">Return data about a director (bio, birth year, death year) by name</td>
                 <td class="tg-0pky">'/movies/directors/:directorName'</td>
                 <td class="tg-0pky">GET</td>
                 <td class="tg-0pky">none</td>
-                <td class="tg-0pky">A JSON object about a single director</td>
+                <td class="tg-0pky">A JSON object about a single director<br><br>{<br>"Name": "Chris Columbus",<br>"Birth year" : 1958<br>}</td>
               </tr>
               <tr>
                 <td class="tg-0pky">Allow new users to register</td>
                 <td class="tg-0pky">'/users'</td>
                 <td class="tg-0pky">POST</td>
                 <td class="tg-0pky">a JSON object holding user data, e.g <br>{<br>"name" : "Bella",<br>"favoriteMovie": "Twilight"<br>}</td>
-                <td class="tg-0pky">a JSON object holding the data of a user, including name, favorite movie, and a unique ID</td>
+                <td class="tg-0pky">a JSON object holding the data of a user, including name, favorite movie, and a unique ID<br><br>{<br>"name": "Bella",<br>"favoriteMovie": "Twilight",<br>"id":&nbsp;&nbsp;a123b3e24<br>}</td>
               </tr>
               <tr>
                 <td class="tg-0pky">Allow users to update their user info (username)</td>
                 <td class="tg-0pky">'/users/:id'</td>
                 <td class="tg-0pky">PUT</td>
                 <td class="tg-0pky">none</td>
-                <td class="tg-0pky">an updated JSON object holding the data of a user, including name, favorite movie, and unique ID</td>
+                <td class="tg-0pky">an updated JSON object holding the data of a user, including name, favorite movie, and unique ID<br><br>{<br>"name": "Edward",<br>"favoriteMovie": "Twilight",<br>"id": a123b3e24<br>}</td>
               </tr>
               <tr>
                 <td class="tg-0pky">Allow users to add a movie to their list of favorites (showing only a text that a movie has been added)</td>
