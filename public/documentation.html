@@ -48,6 +48,85 @@
             </li>
         </ul>
     </div>
+    <div class="myFlix-blurb">
+        <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-0pky">Business Logic</th>
+                <th class="tg-0pky">URL</th>
+                <th class="tg-0pky">HTTP Method</th>
+                <th class="tg-0pky">Request Body Data Format</th>
+                <th class="tg-0pky">Response Body Data Format</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-0pky">Return a list of ALL movies to the user</td>
+                <td class="tg-0pky">'/movies'</td>
+                <td class="tg-0pky">GET</td>
+                <td class="tg-0pky">none</td>
+                <td class="tg-0pky">An array of JSON objects holding all the movies</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
+                <td class="tg-0pky">'/movies/:title'</td>
+                <td class="tg-0pky">GET</td>
+                <td class="tg-0pky">none</td>
+                <td class="tg-0pky">A single JSON object about the details of one movie (name, director, release year, genre, image URL)</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
+                <td class="tg-0pky">'/movies/genre/:genreName'</td>
+                <td class="tg-0pky">GET</td>
+                <td class="tg-0pky">none</td>
+                <td class="tg-0pky">A&nbsp;&nbsp;single JSON object about the name and description of a genre</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">Return data about a director (bio, birth year, death year) by name</td>
+                <td class="tg-0pky">'/movies/directors/:directorName'</td>
+                <td class="tg-0pky">GET</td>
+                <td class="tg-0pky">none</td>
+                <td class="tg-0pky">A JSON object about a single director</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">Allow new users to register</td>
+                <td class="tg-0pky">'/users'</td>
+                <td class="tg-0pky">POST</td>
+                <td class="tg-0pky">a JSON object holding user data, e.g <br>{<br>"name" : "Bella",<br>"favoriteMovie": "Twilight"<br>}</td>
+                <td class="tg-0pky">a JSON object holding the data of a user, including name, favorite movie, and a unique ID</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">Allow users to update their user info (username)</td>
+                <td class="tg-0pky">'/users/:id'</td>
+                <td class="tg-0pky">PUT</td>
+                <td class="tg-0pky">none</td>
+                <td class="tg-0pky">an updated JSON object holding the data of a user, including name, favorite movie, and unique ID</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">Allow users to add a movie to their list of favorites (showing only a text that a movie has been added)</td>
+                <td class="tg-0pky">'/users/:id/:movieTitle'</td>
+                <td class="tg-0pky">POST</td>
+                <td class="tg-0pky">none</td>
+                <td class="tg-0pky">Text saying "movie added to user's list"</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed)</td>
+                <td class="tg-0pky">'/users/:id/:movieTitle'</td>
+                <td class="tg-0pky">DELETE</td>
+                <td class="tg-0pky">none</td>
+                <td class="tg-0pky">Text saying "movie deleted from user's list"</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">Allow existing users to deregister (showing only a text that a user email has been removed)</td>
+                <td class="tg-0pky">'/users/:id'</td>
+                <td class="tg-0pky">DELETE</td>
+                <td class="tg-0pky">none</td>
+                <td class="tg-0pky">Text saying "user has been deleted"</td>
+              </tr>
+            </tbody>
+            </table>
+            
+    </div>
 </body>
 
 </html>
