@@ -269,6 +269,6 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something isn\'t right...');
 });
 const port = process.env.PORT || 8080; //allows port number to change to a pre-configured port number, else uses default 8080.
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
     console.log('Your app is listening on port ' + port);
 });
