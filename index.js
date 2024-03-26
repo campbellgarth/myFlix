@@ -117,7 +117,7 @@ app.post('/users',
         //check validation object for errors
         let errors = validationResult(req);
 
-        if(!errors.isEmpty()){
+        if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
         }
 
@@ -170,42 +170,42 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), as
         });
 });
 //Allow users to update username (update)
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }), 
-[
-    check('Username', 'Username is required').isLength({ min: 5 }),
-    check('Username', 'Username contains non alphanumeric characters-not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
-], async (req, res) => {
-    //check validation object for errors
-    let errors = validationResult(req);
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
+    [
+        check('Username', 'Username is required').isLength({ min: 5 }),
+        check('Username', 'Username contains non alphanumeric characters-not allowed.').isAlphanumeric(),
+        check('Password', 'Password is required').not().isEmpty(),
+        check('Email', 'Email does not appear to be valid').isEmail()
+    ], async (req, res) => {
+        //check validation object for errors
+        let errors = validationResult(req);
 
-    if(!errors.isEmpty()){
-        return res.status(422).json({ errors: errors.array() });
-    }
-    //condition to check username
-    if (req.user.Username !== req.params.Username) {
-        return res.status(400).send('Permission denied')
-    }
-
-    await Users.findOneAndUpdate({ Username: req.params.Username }, {
-        $set:
-        {
-            Username: req.body.Username,
-            Password: req.body.Password,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
         }
-    },
-        { new: true })//ensures updated document is returned instead of original
-        .then((updatedUser) => {
-            res.json(updatedUser);
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).send('Error: ' + err);
-        })
-});
+        //condition to check username
+        if (req.user.Username !== req.params.Username) {
+            return res.status(400).send('Permission denied')
+        }
+
+        await Users.findOneAndUpdate({ Username: req.params.Username }, {
+            $set:
+            {
+                Username: req.body.Username,
+                Password: req.body.Password,
+                Email: req.body.Email,
+                Birthday: req.body.Birthday
+            }
+        },
+            { new: true })//ensures updated document is returned instead of original
+            .then((updatedUser) => {
+                res.json(updatedUser);
+            })
+            .catch((err) => {
+                console.error(err);
+                res.status(500).send('Error: ' + err);
+            })
+    });
 
 //add movie to favorites (create)
 app.post('/users/:Username/movie/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
@@ -268,7 +268,7 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something isn\'t right...');
 });
-const port = process.env.PORT || 8080; //allows port number to change to a pre-configured port number, else uses default 8080
+const port = process.env.PORT || 8080; //allows port number to change to a pre-configured port number, else uses default 8080.
 app.listen(port, '0.0.0.0', () => {
     console.log('Your app is listening on port ' + port);
 });
