@@ -17,18 +17,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const { check, validationResult } = require('express-validator');
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'https://myflixmovies-72c1f6d2bace.herokuapp.com'];
+//set CORS to only specific origins
+// app.use(cors({
+//     origin: (origin, callback) => {
+//         if (!origin) return callback(null, true);
+//         if (allowedOrigins.indexOf(origin) === -1) { //if origin isn't found in list of allowed origins
+//             let message = 'The CORS policy for this application doesn\'t allow access from origin ' + origin;
+//             return callback(new Error(message), false);
+//         }
+//         return callback(null, true);
+//     }
+// }));
 
-app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) { //if origin isn't found in list of allowed origins
-            let message = 'The CORS policy for this application doesn\'t allow access from origin ' + origin;
-            return callback(new Error(message), false);
-        }
-        return callback(null, true);
-    }
-}));
-//app.use(cors()); allows requests from all origins instead of above
+app.use(cors()); //allows requests from all origins instead of above
 let auth = require('./auth')(app); //use auth.js code (app) argument allows express to be available in auth.js as well
 const passport = require('passport');
 require('./passport'); //imports passport.js
@@ -188,11 +189,12 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
             return res.status(400).send('Permission denied')
         }
 
+        let hashedPassword = Users.hashPassword(req.body.Password);
         await Users.findOneAndUpdate({ Username: req.params.Username }, {
             $set:
             {
                 Username: req.body.Username,
-                Password: req.body.Password,
+                Password: hashedPassword,
                 Email: req.body.Email,
                 Birthday: req.body.Birthday
             }
