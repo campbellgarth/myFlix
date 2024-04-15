@@ -52,7 +52,7 @@ app.get('/movies', async (req, res) => {
         });
 });
 
-//return a list of a specific movie (read)
+//returns a list of a specific movie (read)
 app.get('/movies/:Moviename', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.findOne({ Title: req.params.Moviename })
         .then((movie) => {
