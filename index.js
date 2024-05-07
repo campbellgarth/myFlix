@@ -237,7 +237,7 @@ app.delete('/users/:Username/movie/:MovieID', passport.authenticate('jwt', { ses
     },
         { new: true })
         .then((updatedUser) => {
-            res.json("Movie was removed from " + updatedUser.Username + "'s list");
+            res.json(updatedUser);
         })
         .catch((err) => {
             console.error(err);
