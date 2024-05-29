@@ -214,6 +214,9 @@ app.post('/users/:Username/movie/:MovieID', passport.authenticate('jwt', { sessi
     if (req.user.Username !== req.params.Username) {
         return res.status(400).send('Permission denied')
     }
+    if (user.FavoriteMovie.includes(req.params.MovieID)) {
+        return res.status(400).send('Movie is already in the favorites list');
+    }
     await Users.findOneAndUpdate({ Username: req.params.Username }, {
         $push: { FavoriteMovie: req.params.MovieID }
     },
