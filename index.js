@@ -212,23 +212,30 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
 //add movie to favorites (create)
 app.post('/users/:Username/movie/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.Username !== req.params.Username) {
-        return res.status(400).send('Permission denied')
+        return res.status(400).send('Permission denied');
     }
-    else if (user.FavoriteMovie.includes(req.params.MovieID)) {
-        return res.status(400).send('Movie is already in the favorites list');
+
+    try {
+        const user = await Users.findOne({ Username: req.params.Username });
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        if (user.FavoriteMovie.includes(req.params.MovieID)) {
+            return res.status(400).send('Movie is already in the favorites list');
+        }
+
+        user.FavoriteMovie.push(req.params.MovieID);
+        const updatedUser = await user.save();
+
+        res.json(updatedUser);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
     }
-    await Users.findOneAndUpdate({ Username: req.params.Username }, {
-        $push: { FavoriteMovie: req.params.MovieID }
-    },
-        { new: true })
-        .then((updatedUser) => {
-            res.json(updatedUser);
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).send('Error: ' + err);
-        });
 });
+
 
 //Allow users to remove a movie from their list of favorites (delete)
 app.delete('/users/:Username/movie/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
