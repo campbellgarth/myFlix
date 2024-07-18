@@ -1,5 +1,5 @@
 /**
- * @module index.js
+ * @module index
  * @description This is the main module that holds all the API endpoints
  */
 
