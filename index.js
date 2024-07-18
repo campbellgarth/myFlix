@@ -43,10 +43,9 @@ require('./passport'); //imports passport.js
 app.use(morgan('common')); //logs page nav to terminal
 
 /**
-* Returns a welcome message when visiting the site without an endpoint
-
-* @returns {string} welcomeMessage
-*/
+ * Returns a welcome message when visiting the site without an endpoint
+ * @returns {string} Welcome message
+ */
 app.get('/', (req, res) => {
   res.send('Welcome to myFlix!');
 });
@@ -54,7 +53,7 @@ app.get('/', (req, res) => {
 /**
  * Returns a list of all movies to users under the endpoint '/movies'
  * @async
- * @returns {Array<Object>} movies
+ * @returns {Array<Object>} List of movies
  */
 app.get(
   '/movies',
@@ -74,6 +73,7 @@ app.get(
 /**
  * Returns one movie users under the endpoint '/movies/:Moviename'
  * @async
+ * @param {string} Moviename - The title of the movie
  * @returns {Object} movie
  */
 app.get(
@@ -94,6 +94,7 @@ app.get(
 /**
  * Returns a list of movies with a specific genre to users under the endpoint '/movies/genre/:genreName'
  * @async
+ * @param {string} genreName - The name of the genre
  * @returns {Array<Object>} movies
  */
 app.get(
@@ -114,6 +115,7 @@ app.get(
 /**
  * Returns a genre object to users under the endpoint '/movies/genres/:genreName'
  * @async
+ * @param {string} genreName - The name of the genre
  * @returns {Object} genre
  */
 app.get(
@@ -134,6 +136,7 @@ app.get(
 /**
  * Returns a director object to users under the endpoint '/movies/directors/:directorName'
  * @async
+ * @param {string} directorName - The name of the director
  * @returns {Object} director
  */
 app.get(
@@ -153,11 +156,11 @@ app.get(
 
 /**
  * Allow new users to register under the endpoint '/users'
- *@param {number} ID
- * @param {string} Username
- * @param {string} Password
- * @param {string} Email
- * @param {date} Birthday
+ *@param {number} ID - user ID
+ * @param {string} Username - Username
+ * @param {string} Password - Password
+ * @param {string} Email - User's Email
+ * @param {date} Birthday - User's birthday
  * @async
  * @returns {Object} user
  */
@@ -212,7 +215,7 @@ app.post(
 /**
  * Returns a list of all users under the endpoint '/users'
  * @async
- * @returns {Array<Object>} users
+ * @returns {Array<Object>} List of users
  */
 app.get(
   '/users',
@@ -231,6 +234,7 @@ app.get(
 /**
  * Returns a user under the endpoint '/users/:Username'
  * @async
+ * @param {string} Username - username of requested user
  * @returns {Object} user
  */
 app.get(
@@ -249,12 +253,12 @@ app.get(
 );
 /**
  * Allow new users to update user under the endpoint '/users/:Username'
- * @param {string} Username
- * @param {string} Password
- * @param {string} Email
- * @param {date} Birthday
+ * @param {string} Username - username
+ * @param {string} Password - password
+ * @param {string} Email - email
+ * @param {date} Birthday -date of birther
  * @async
- * @returns {Object} updatedUser
+ * @returns {Object} Updated user
  */
 app.put(
   '/users/:Username',
@@ -306,7 +310,9 @@ app.put(
 /**
  * Allows users to add a movie to their favorites under endpoint '/users/:Username/movie/:MovieID'
  * @async
- * @returns {Object} updatedUser
+ * @param {string} Username - username
+ * @param {string} MovieID - The ID of the movie user wishes to favorite
+ * @returns {Object} Updated user
  */
 app.post(
   '/users/:Username/movie/:MovieID',
@@ -341,7 +347,9 @@ app.post(
 /**
  * Allows users to remove a movie from their favorites under endpoint '/users/:Username/movie/:MovieID'
  * @async
- * @returns {Object} updatedUser
+ * @param {string} Username - username
+ * @param {string} MovieID - The ID of the movie user wishes to unfavorite
+ * @returns {Object} Updated user
  */
 app.delete(
   '/users/:Username/movie/:MovieID',
@@ -370,7 +378,8 @@ app.delete(
 /**
  * Allows users to delete their profile under endpoint '/users/:Username'
  * @async
- * @returns {string} userDeleted
+ * @param {string} Username - username
+ * @returns {string} user deleted
  */
 app.delete(
   '/users/:Username',
